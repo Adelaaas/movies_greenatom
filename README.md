@@ -33,3 +33,6 @@
 
 ### Пример заглавной страницы сайт
 ![Image alt](https://github.com/Adelaaas/movies_greenatom/raw/main/greenatom_web.png)
+
+### Пример страницы c результатами предсказания
+![Image alt](https://github.com/Adelaaas/movies_greenatom/raw/main/result page.png)
