@@ -33,4 +33,4 @@
 
 ### Пример заглавной страницы сайт
 
-![Image alt](https://github.com/Adelaaas/movies_greenatom/main/greenatom_web.png)
+![Image alt](https://github.com/Adelaaas/movies_greenatom/main/raw/greenatom_web.png)
