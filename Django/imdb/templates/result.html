@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Result</title>
+    <link rel="stylesheet" href="{% static 'semantic_home.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <img src="{% static 'images/IMDb_Header_Page.jpg' %}" alt="imdb image" width="100%">
+      <div class="centered">Large Movie Review Dataset analysys</div>
+    </div>
+
+    <div class="row">
+
+      <div class="side">
+          <h1>Немного информации о сервисе</h1>
+          <p class="one">
+              Данный сервис разработан в рамках тестового задания для junior-специалистов по направлению Data Science в Гринатом.<br>
+          </p>
+      </div>
+
+      <div class="main">
+        <h1> Результаты по вашему отзыву </h1>
+      
+        <div class="rectangle">
+          <p class="one">{{ result_bert_clf }}</p>
+        </div>
+
+        <div class="rectangle">
+          <p class="one">Рейтинг: {{ result_bert_reg }}</p>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="footer">
+      <ul>
+        <li><a href="https://t.me/miroshkaDX">Telegram</a></li>
+        <li><a href="mailto:adela.x@yandex.ru">Email</a></li>
+        <li><a href="https://github.com/Adelaaas/movie_greenatom">Github</a></li>
+        <li><a href="https://github.com/Adelaaas/movie_greenatom">Report</a></li>
+        <li>👋</li>
+      </ul>
+    </div>
+
+  </body>
+</html>
