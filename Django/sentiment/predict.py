@@ -2,11 +2,7 @@ import os
 import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
-from transformers import BertTokenizer, BertModel, AdamW, get_linear_schedule_with_warmup, BertForSequenceClassification
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-
-from tqdm import tqdm
+from transformers import BertTokenizer, BertModel, BertForSequenceClassification
 
 
 # Предобработка данных и создание DataLoader
@@ -76,40 +72,6 @@ class BERTClassifier(nn.Module):
         x = self.dropout(pooled_output)
         logits = self.fc(x)
         return logits
-
-
-# функция тренировки модели
-def train(model, data_loader, optimizer, scheduler, device):
-    model.train()
-
-    for batch in tqdm(data_loader):
-        optimizer.zero_grad()
-        input_ids = batch['input_ids'].to(device)
-        attention_mask = batch['attention_mask'].to(device)
-        labels = batch['label'].to(device)
-        outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-        loss = nn.CrossEntropyLoss()(outputs, labels)
-        loss.backward()
-        optimizer.step()
-        scheduler.step()
-
-
-# функция оценки модели
-def evaluate(model, data_loader, device):
-    model.eval()
-    predictions = []
-    actual_labels = []
-    with torch.no_grad():
-        for batch in data_loader:
-            input_ids = batch['input_ids'].to(device)
-            attention_mask = batch['attention_mask'].to(device)
-            labels = batch['label'].to(device)
-            outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-            _, preds = torch.max(outputs, dim=1)
-            predictions.extend(preds.cpu().tolist())
-            actual_labels.extend(labels.cpu().tolist())
-    return accuracy_score(actual_labels, predictions), classification_report(actual_labels, predictions)
-
 
 # функция предсказания
 def predict_sentiment(text, model, tokenizer, device, max_length=128):
